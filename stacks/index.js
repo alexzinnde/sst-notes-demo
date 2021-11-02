@@ -1,5 +1,9 @@
-import StorageStack from "./StorageStack"
+import StorageStack from './StorageStack'
+import ApiStack from './ApiStack'
 
 export default function main(app) {
-  new StorageStack(app, "storage")
+  const storageStack = new StorageStack(app, 'storage')
+  const apiStack = new ApiStack(app, 'api', {
+    table: storageStack.table
+  })
 }
