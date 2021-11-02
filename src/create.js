@@ -1,5 +1,5 @@
 import handler from './utils/handler'
-import dynamodb from './utils/dynamodb'
+import dynamoDb from './utils/dynamodb'
 import * as uuid from 'uuid'
 
 export const main = handler(async (event) => {
@@ -16,7 +16,7 @@ export const main = handler(async (event) => {
     }
   }
 
-  await dynamodb.put(params)
+  await dynamoDb.put(params)
 
   return params.Item
 })
