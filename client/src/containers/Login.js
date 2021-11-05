@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import { Auth } from 'aws-amplify'
+import { useAppContext } from '../lib/contextLib'
+
+import './Login.css'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import './Login.css'
-
-import { Auth } from 'aws-amplify'
 
 export default function Logic() {
+  const { userHasAuthenticated } = useAppContext()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -17,7 +19,7 @@ export default function Logic() {
     event.preventDefault()
     try {
       await Auth.signIn(email, password)
-      alert('Logged In')
+      userHasAuthenticated(true)
     } catch (err) {
       alert(`ERROR: ${err.message}`)
     }
