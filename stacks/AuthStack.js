@@ -27,8 +27,7 @@ export default class AuthStack extends sst.Stack {
     this.auth = new sst.Auth(this, 'Auth', {
       cognito: {
         userPool: {
-          // Users can login with their email and password
-          signInAliases: { email: true }
+          signInAliases: { email: true } // Users can login with their email and password
         }
       }
     })

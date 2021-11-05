@@ -1,3 +1,4 @@
+import { RemovalPolicy } from '@aws-cdk/core'
 import * as sst from '@serverless-stack/resources'
 
 export default class StorageStack extends sst.Stack {
@@ -15,7 +16,8 @@ export default class StorageStack extends sst.Stack {
         userId: sst.TableFieldType.STRING,
         noteId: sst.TableFieldType.STRING
       },
-      primaryIndex: { partitionKey: 'userId', sortKey: 'noteId' }
+      primaryIndex: { partitionKey: 'userId', sortKey: 'noteId' },
+      removalPolicy: RemovalPolicy.DESTROY
     })
 
     this.bucket = new sst.Bucket(this, 'Uploads', {
@@ -28,7 +30,8 @@ export default class StorageStack extends sst.Stack {
             allowedHeaders: ['*'],
             allowedMethods: ['GET', 'PUT', 'POST', 'DELETE', 'HEAD']
           }
-        ]
+        ],
+        removalPolicy: RemovalPolicy.DESTROY
       }
     })
   }

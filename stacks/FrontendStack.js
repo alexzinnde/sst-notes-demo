@@ -8,8 +8,7 @@ export default class FrontendStack extends sst.Stack {
 
     // Define our React App
     const site = new sst.ReactStaticSite(this, 'ReactFrontend', {
-      path: 'client',
-      // Pass in env vars
+      path: 'client', // path to client in project
       environment: {
         REACT_APP_API_URL: api.url,
         REACT_APP_REGION: scope.region,
