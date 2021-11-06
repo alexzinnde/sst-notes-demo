@@ -3,6 +3,7 @@ import dynamoDb from './utils/dynamodb'
 import * as uuid from 'uuid'
 
 export const main = handler(async (event) => {
+  console.log('in create handler')
   const data = JSON.parse(event.body)
 
   const params = {
