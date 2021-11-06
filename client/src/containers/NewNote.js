@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { API } from 'aws-amplify'
 
 import Form from 'react-bootstrap/Form'
 import LoaderButton from '../components/LoaderButton'
@@ -23,6 +24,12 @@ export default function NewNote() {
     file.current = event.target.files[0]
   }
 
+  function createNote(note) {
+    return API.post('notes', '/notes', {
+      body: note
+    })
+  }
+
   async function handleSubmit(event) {
     event.preventDefault()
 
@@ -32,6 +39,13 @@ export default function NewNote() {
     }
 
     setIsLoading(true)
+    try {
+      await createNote({ content })
+      history.push('/')
+    } catch (e) {
+      onError(e)
+      setIsLoading(false)
+    }
   }
 
   return (
