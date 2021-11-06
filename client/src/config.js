@@ -1,6 +1,7 @@
 const config = {
   // Backend Config
   MAX_ATTACHMENT_SIZE: 5000000,
+  STRIPE_KEY: 'pk_test_51JrW0QIXqiTrd4M56ry7oYvZRf4TgCDjktGEgYqQywi0YfvJi8aD0B24MPzSmYDFRaCUGCtliYrhxuAXg4Rgy7DG006oOUiLa3',
   s3: {
     REGION: process.env.REACT_APP_REGION,
     BUCKET: process.env.REACT_APP_BUCKET
@@ -17,4 +18,4 @@ const config = {
   }
 }
 
-export default config;
+export default config
