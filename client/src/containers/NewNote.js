@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { API } from 'aws-amplify'
+import { s3Upload } from '../lib/awsLib'
 
 import Form from 'react-bootstrap/Form'
 import LoaderButton from '../components/LoaderButton'
@@ -40,7 +41,8 @@ export default function NewNote() {
 
     setIsLoading(true)
     try {
-      await createNote({ content })
+      const attachment = file.current ? await s3Upload(file.current) : null
+      await createNote({ content, attachment })
       history.push('/')
     } catch (e) {
       onError(e)
